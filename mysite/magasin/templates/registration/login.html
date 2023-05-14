@@ -1,0 +1,31 @@
+{% extends "magasin/base.html" %}
+{% block content %}
+<div class="container shadow"  style=" width: 35%;  margin-bottom: 100px; background-color: white;">
+    <div class="row my-4">
+        <div class="col">
+            <h3  style="margin-left: 230px; margin-right: 120px;">Login</h3>
+            <br>
+            <form action="" method="post" style="margin-left: 100px;"  novalidate class="p-6">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div style="padding-top: 39px;">
+                        {{ fm.label_tag }}
+                        {{ fm }}
+                        <small class="text-danger">{{ fm.errors|striptags }}</small>
+                {% endfor %}
+                <br><br>
+                <small><a href="#">Forget Password ?</a></small>
+                <br>
+                <input type="submit" value="Login" style="margin-left: 120px; margin-bottom: 10px;" class="btn btn-primary mt-4"> <br>
+                <div class="text-center text-primary fw-bold">
+                    <small style="margin-right: 80px; margin-bottom: 30px; margin-top: 30px;">New User ? <a href="{% url 'register' %}" class="text-danger">Create an Account</a></small>
+                </div>
+                {% if form.non_field_errors %}
+                    <p class="alert alert-danger my-3">{{ form.non_field_errors|striptags }}</p>
+                {% endif %}
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
